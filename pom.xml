@@ -25,6 +25,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>com.h2database</groupId>
@@ -65,11 +69,12 @@
                 <artifactId>liquibase-maven-plugin</artifactId>
                 <version>4.29.2</version>
                 <configuration>
-<!--                    <propertyFileWillOverride>true</propertyFileWillOverride>-->
-<!--                    <propertyFile>target/classes/liquibase.properties</pr opertyFile>-->
                     <url>jdbc:mysql://127.0.0.1:3306/bookdb?useUnicode=true&amp;characterEncoding=utf-8&amp;serverTimezone=UTC</url>
                     <username>bookadmin</username>
                     <password>password</password>
+                    <outputChangeLogFile>changelog.xml</outputChangeLogFile>
+                    <changeSetAuthor>JEarl</changeSetAuthor>
+                    <changelogSchemaName>bookdb</changelogSchemaName>
                 </configuration>
                 <dependencies>
                     <dependency>
