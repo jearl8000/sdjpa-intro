@@ -32,6 +32,7 @@ public class DataInitializer implements CommandLineRunner {
     public void run(String... args) throws Exception {
         bookRepository.deleteAll();
         authorUuidRepository.deleteAll();
+        bookUuidRepository.deleteAll();
 
         Book bookDDD = new Book("Domain Driven Design", "123", "RandomHouse", null);
         Book savedDDD = bookRepository.save(bookDDD);
