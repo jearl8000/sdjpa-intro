@@ -36,10 +36,25 @@ public class MySQLIntegrationTest {
     @Autowired
     AuthorCompositeRepository authorCompositeRepository;
 
+    @Autowired
+    AuthorEmbeddedRepository authorEmbeddedRepository;
+
     @Test
     void testMySQL() {
         long countBefore = bookRepository.count();
         assertThat(countBefore).isEqualTo(2);
+    }
+
+    @Test
+    void testAuthorEmbedded() {
+        NameId nameId = new NameId("John", "Doe");
+        AuthorEmbedded authorEmbedded = new AuthorEmbedded(nameId);
+        authorEmbedded.setCountry("USA");
+        AuthorEmbedded saved = authorEmbeddedRepository.save(authorEmbedded);
+        assertThat(saved).isNotNull();
+
+        AuthorEmbedded fetched = authorEmbeddedRepository.findById(nameId).get();
+        assertThat(fetched).isNotNull();
     }
 
     @Test
